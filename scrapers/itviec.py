@@ -4,6 +4,8 @@ import json
 
 
 url = "https://itviec.com/it-jobs/data-analyst-sql"
+url = "https://itviec.com/it-jobs/full-stack-developer"
+url = "https://itviec.com/it-jobs/reactjs"
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
@@ -69,5 +71,5 @@ for job in jobs:
         'requirements': requirements
     })
 
-with open(f"data/raw/itviec_jobs.json", 'w', encoding='utf-8') as file:
+with open(f"data/raw/itviec_jobs3.json", 'w', encoding='utf-8') as file:
     json.dump(job_data, file, ensure_ascii=False)
