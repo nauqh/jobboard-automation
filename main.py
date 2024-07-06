@@ -38,7 +38,7 @@ prompt = ChatPromptTemplate.from_messages(
 chain = prompt | llm
 
 
-with open('data/raw/itviec_jobs3.json', 'r', encoding='utf-8') as file:
+with open('data/raw/linkedin_jobs.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 with open('data/profile.json', 'r') as file:
     candidate = json.load(file)
@@ -53,7 +53,7 @@ for job in data:
             "title": title,
             "description": description,
             "requirement": requirement,
-            "candidate": candidate['FSW']
+            "candidate": candidate['DS']
         }
     )
 
@@ -63,5 +63,5 @@ for job in data:
     # Add the relevancy score to the job entry
     job['suitability'] = suitability
 
-with open('data/processed/itviec_jobs_with_relevancy3.json', 'w', encoding='utf-8') as file:
+with open('data/processed/linkedin_jobs_with_relevancy.json', 'w', encoding='utf-8') as file:
     json.dump(data, file, ensure_ascii=False, indent=2)

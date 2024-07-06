@@ -1,0 +1,259 @@
+[
+    {
+        "title": "Data Analyst",
+        "company": "Talent Disruptors",
+        "logo": "https://media.licdn.com/dms/image/D4E0BAQFD8S5pQvJ_aA/company-logo_100_100/0/1703634907453/talentdisruptors_logo?e=2147483647&v=beta&t=Aa5WWm23tMEB1YXNx_W6NlwoLP52pqqKqLpe3QhMT6Y",
+        "url": "https://vn.linkedin.com/jobs/view/data-analyst-at-talent-disruptors-3860728208?trk=public_jobs_topcard-title",
+        "location": "Hanoi",
+        "descriptions": [
+            "Data Analysis and Interpretation: Utilize tools like Google Data Studio, BigQuery, and Power BI to analyze marketing data and extract meaningful insights.",
+            "Developing Reporting Dashboards: Create dynamic dashboards and reports that provide real-time insights into marketing performance.",
+            "Collaborating with Marketing Teams: Work closely with marketing teams to understand their data needs and provide insights that inform strategy and decision-making.",
+            "Data Integration and Management: Integrate data from various sources to provide a comprehensive view of marketing performance.",
+            "Performance Tracking: Monitor key performance indicators (KPIs) to measure the effectiveness of marketing campaigns and strategies.",
+            "Predictive Analysis: Use data to predict trends and market movements, aiding in proactive strategy development.",
+            "Training and Support: Provide training and support to team members in using data analysis tools and understanding reports."
+        ],
+        "requirements": [
+            "Proficient in Data Analysis Tools: You have strong experience with tools such as Google Data Studio, BigQuery, and Power BI.",
+            "Analytical and Insightful: You possess the ability to analyze complex datasets and turn them into actionable insights.",
+            "Collaborative in Nature: You work well with marketing teams, understanding their needs and communicating data insights effectively.",
+            "Skilled in Data Integration: You are adept at integrating and managing data from various sources.",
+            "Detail-Oriented: You have a keen eye for detail and accuracy in data analysis and reporting.",
+            "Proactive and Predictive: You are capable of conducting predictive analyses to inform future marketing strategies.",
+            "Excellent Communicator: You can clearly convey data insights and their implications to non-technical team members."
+        ]
+    },
+    {
+        "title": "Data Analyst - Khối Dữ liệu (HO24.25)",
+        "company": "MBBank",
+        "logo": "https://media.licdn.com/dms/image/C510BAQE43LPFo3ryJA/company-logo_100_100/0/1630627496642?e=2147483647&v=beta&t=UyK0wNLLmBYVRd7E3jeojuQ4Shh7sKkJ_aBEOPoy_ao",
+        "url": "https://vn.linkedin.com/jobs/view/data-analyst-kh%E1%BB%91i-d%E1%BB%AF-li%E1%BB%87u-ho24-25-at-mbbank-3967631880?trk=public_jobs_topcard-title",
+        "location": "Hanoi",
+        "descriptions": [
+            "Bảo hiểm",
+            "Du Lịch",
+            "Phụ cấp",
+            "Du lịch nước ngoài",
+            "Đồng phục",
+            "Thưởng",
+            "Chăm sóc sức khỏe",
+            "Đào tạo",
+            "Tăng lương",
+            "Công tác phí",
+            "Phụ cấp thâm niên",
+            "Chế độ nghỉ phép",
+            "Chế độ tập thể dục"
+        ],
+        "requirements": [
+            "Tìm hiểu bài toán (Business Understanding): Phối hợp với đơn vị nghiệp vụ lên đề xuất giải pháp cho bài toán phân tích.",
+            "Tìm hiểu dữ liệu (Data Understanding): Tìm hiểu ý nghĩa các trường dữ liệu hiện có để đưa làm đầu vào của bài toán; Thu thập, tổng hợp thêm các thuộc tính đặc trưng phục vụ cho đầu vào bài toán.",
+            "Làm sạch dữ liệu (Data Cleaning): Loại bỏ phần tử ngoại lai, thêm các giá trị bị thiếu, sửa các giá trị bị sai trong dữ liệu, dữ liệu không đúng format (Date, String, Number)…",
+            "Tích hợp dữ liệu (Data Integration): thực hiện mapping chi tiết tích hợp dữ liệu về hệ thống phân tích dữ liệu.",
+            "Biến đổi dữ liệu (Data Transformation): Tổng hợp và biến đổi dữ liệu để đưa ra các thuộc tính mới (phụ thuộc vào bước tìm hiểu dữ liệu ở trên).",
+            "Phân tích mô tả (Descriptive Analysis) & trực quan hóa dữ liệu phân tích"
+        ]
+    },
+    {
+        "title": "Carbon Data Analyst",
+        "company": "Persefoni",
+        "logo": "https://media.licdn.com/dms/image/C4D0BAQGhx1n1Fy8T4w/company-logo_100_100-alternative/0/1630508739542/persefoni_logo?e=2147483647&v=beta&t=OaPG_Fkud-Nt4oePty0-Ca3IJQWr6uyRgDcdBO5-8ww",
+        "url": "https://vn.linkedin.com/jobs/view/carbon-data-analyst-at-persefoni-3959312082?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Understand and become a subject matter expert on the Persefoni platform and be able to troubleshoot any errors.",
+            "Communicate clearly with clients on data gaps and obstacles in the carbon footprinting process.",
+            "Transform data in excel to adapt to necessary requirements.",
+            "Collaborate closely with the Persefoni’s internal carbon accounting experts.",
+            "Develop an understanding of different carbon accounting calculation methodologies and input data types.",
+            "Optimize processes to become more efficient with time.",
+            "Support time zones of Persefoni global customers (USA, Europe, Japan, Singapore, etc.)"
+        ],
+        "requirements": [
+            "High level of excel proficiency.",
+            "Excellent verbal and written communication skills, with a high proficiency in English and a high degree of attention to detail.",
+            "Project management experience and ability to meet deadlines.",
+            "Capable of successfully working multiple projects simultaneously.",
+            "Experience in gathering, formatting, and visually representing data.",
+            "Proven ability to work cross functionally with technical and non-technical roles.",
+            "Growth mindset and eagerness to learn quickly.",
+            "Carbon accounting experience is preferred but not required."
+        ]
+    },
+    {
+        "title": "Region Analytics Associate",
+        "company": "Gojek",
+        "logo": "https://media.licdn.com/dms/image/C4D0BAQHCmfKRtPXKDg/company-logo_100_100/0/1658813682786/gojek_logo?e=2147483647&v=beta&t=PaGxHdqgw9XInWUkrbIYX0GkN0C-bJ0jUUJ_V9z8-z8",
+        "url": "https://vn.linkedin.com/jobs/view/region-analytics-associate-at-gojek-3958342389?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Perform exploratory data analysis using SQL and present interesting findings to business stakeholders to drive business and strategic decisions",
+            "Design and analyze experiments to improve service quality and quantity",
+            "Build and maintain self-serve data products such as dashboards (Looker & Tableau) and tables to reduce time to insights"
+        ],
+        "requirements": [
+            "Should have at least 2-3 years of practical experience in SQL.",
+            "Prior experience with applied statistics, experimental design is a plus.",
+            "Able to tell a coherent data narrative using visualization tools and able to set best practices in data visualization to convey a product insight through impactful graphs.",
+            "Proven ability to recognize business needs and ability to communicate with multiple stakeholders including PMs, business and operations.",
+            "Balance attention to detail with swift execution."
+        ]
+    },
+    {
+        "title": "Product Data Analyst - Digital Banking",
+        "company": "Trusting Social",
+        "logo": "https://media.licdn.com/dms/image/C510BAQGhxaEbVP5NDQ/company-logo_100_100/0/1630626369858/trustingsocial_logo?e=2147483647&v=beta&t=AjjzzPT_UmMSrPntt0s6hgHhNZTns6oAmfSLDLdAbIs",
+        "url": "https://vn.linkedin.com/jobs/view/product-data-analyst-digital-banking-at-trusting-social-3930751547?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Understand product & processes",
+            "Interpret data, analyze results using statistical techniques and provide ongoing reports",
+            "Develop and implement databases, data collection systems, data analytics, and other strategies that optimize statistical efficiency and quality",
+            "Acquire data from primary or secondary data sources and maintain databases/data systems",
+            "Identify, analyze, and interpret trends or patterns in complex data sets",
+            "Work with management to prioritize business and information needs",
+            "Locate and define new process improvement opportunities"
+        ],
+        "requirements": [
+            "Bachelor's degree in Mathematics, Economics, Finance, Computer Science, Data Science, Information Management, or Statistics. Proven working experience as a data analyst, or credit risk analytics",
+            "Having knowledge of credit products is a plus",
+            "Adept at full task flow from data query and collecting, report writing to presenting findings based on significant amounts of information with attention to detail and accuracy",
+            "Technical expertise in data models, database design development, data mining, and segmentation techniques",
+            "Strong knowledge of and experience with databases (SQL), familiarity with tools (Python) for analyzing datasets, and experience with other self-service data analytics tools, NoSQL is a plus",
+            "Have experience with data visualization tools such as PowerBI, Google Data Studio, Tableau, Metabase, QlikView, etc.",
+            "Willing to learn on the job and ready to adapt to changes in requirements"
+        ]
+    },
+    {
+        "title": "Business Data Analyst",
+        "company": "VPBank",
+        "logo": "https://media.licdn.com/dms/image/D560BAQE7SfgGlU3ohg/company-logo_100_100/0/1708486809864/vpbank_logo?e=2147483647&v=beta&t=yrSNxcr5qQLGk84X3darmmMyU9QSgmGQiKQKMKQCQkI",
+        "url": "https://vn.linkedin.com/jobs/view/business-data-analyst-at-vpbank-3962936128?trk=public_jobs_topcard-title",
+        "location": "Hanoi",
+        "descriptions": [
+            "Xây dựng báo cáo phân tích chuyên sâu, hiệu quả về các chỉ số RFR, NFR, Rollback, Stabilized, Paid of, Recovery rate, %RPC, %TPC, %UNC nhằm kịp thời phát hiện ra các vấn đề về chất lượng danh mục, chất lượng tác nghiệp thu hồi nợ để đưa ra đề xuất hành động/chiến lược cải thiện nhằm đạt chỉ tiêu THN theo từng thời kỳ.",
+            "Phối hợp Trung tâm phân tích kinh doanh xây dựng báo cáo, phân tích chuyên sâu về năng suất lao động theo quantile, các chỉ số: working time, Productivity của các cán bộ thu hội nợ nhằm tìm ra chân dung cán bộ thu hồi nợ có năng suất cao, đề xuất cơ chế, cách thức vận hành nhằm đạt tối ưu hiệu suất thu hồi nợ phù hợp chiến lược từng thời kỳ.",
+            "Phối hợp với Phòng phân tích nâng cao (Data science) về đề bài và logic để xây dựng các model dự báo sớm về chất lượng danh mục theo mô hình chiến lược dựa trên phản hồi của khách hang (Responsed base) từ đó có sự sắp xếp nguồn lực nhân sự theo từng chiến lược (Call/field) và phân khúc.",
+            "Phân tích chuyên sâu chất lượng danh mục thu hồi nợ dựa trên phản hồi của khách hàng từ đó phân hóa (segmentation) danh mục, đề xuất chân dung khách hang mục tiêu và đề xuất áp chiến thuật, chiến lược tác động và tần suất tác động phù hợp nhằm đạt hiệu quả thu hồi nợ.",
+            "Phân tích chuyên sâu hiệu quả các chương trình giải pháp tài chính áp dụng cho các phân khúc khách hang nhằm có khuyến nghị vê chính sách, sản phẩm nhằm đạt hiệu quả thu hồi nợ, giảm NPL và giảm trích lập dự phòng.",
+            "Thực hiện báo cáo định kỳ, đột xuất về hoạt động thu hồi nợ cho Trưởng phòng quản lý hoạt động thu hồi nợ theo yêu cầu.",
+            "Thực hiện các công việc khác theo sự phân công của cấp trên theo quy định của Ngân hàng từng thời kỳ.",
+            "Thực hiện các công việc khác theo sự phân công của cấp trên trong từng thời kỳ."
+        ],
+        "requirements": [
+            "Tốt nghiệp Đại học trở lên các chuyên ngành Toán kinh tế, Kinh tế, Tài chính – ngân hàng.",
+            "Am hiểu về lĩnh vực tín dụng, thu hồi nợ, xử lý nợ. Có tối thiểu 02 năm kinh nghiệm tại 01 trong các lĩnh vực trong ngành ngân hàng như: quản trị rủi ro, thu hồi nợ, xử lý nợ, kế hoạch chính sách, kế hoạch tài chính…",
+            "Sử dụng thành thạo SQL, VBA, Excel, Power Point, Word.",
+            "Tiếng anh (Giao tiếp, viết, nói).",
+            "Tổng hợp, tính toán, phân tích số liệu.",
+            "Kỹ năng thuyết trình; kỹ năng lập kế hoạch, tổ chức công việc; kỹ năng giải quyết xung đột và làm việc áp lực cao.",
+            "Cẩn thận, tỉ mỉ, chủ động, kỷ luật."
+        ]
+    },
+    {
+        "title": "Product Data Analyst - Digital Banking",
+        "company": "Trusting Social Career Page",
+        "logo": "https://media.licdn.com/dms/image/C560BAQEJXrhUE2rtgg/company-logo_100_100/0/1630659566262/trusting_social_logo?e=2147483647&v=beta&t=SlkMX_AtZyUMxoszuGeri7OCQeC_QUalnxRatCct-Xg",
+        "url": "https://vn.linkedin.com/jobs/view/product-data-analyst-digital-banking-at-trusting-social-career-page-3930569713?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Understand product & processes",
+            "Interpret data, analyze results using statistical techniques and provide ongoing reports",
+            "Develop and implement databases, data collection systems, data analytics, and other strategies that optimize statistical efficiency and quality",
+            "Acquire data from primary or secondary data sources and maintain databases/data systems",
+            "Identify, analyze, and interpret trends or patterns in complex data sets",
+            "Work with management to prioritize business and information needs",
+            "Locate and define new process improvement opportunities"
+        ],
+        "requirements": [
+            "Bachelor's degree in Mathematics, Economics, Finance, Computer Science, Data Science, Information Management, or Statistics. Proven working experience as a data analyst, or credit risk analytics",
+            "Having knowledge of credit products is a plus",
+            "Adept at full task flow from data query and collecting, report writing to presenting findings based on significant amounts of information with attention to detail and accuracy",
+            "Technical expertise in data models, database design development, data mining, and segmentation techniques",
+            "Strong knowledge of and experience with databases (SQL), familiarity with tools (Python) for analyzing datasets, and experience with other self-service data analytics tools, NoSQL is a plus",
+            "Have experience with data visualization tools such as PowerBI, Google Data Studio, Tableau, Metabase, QlikView, etc.",
+            "Willing to learn on the job and ready to adapt to changes in requirements"
+        ]
+    },
+    {
+        "title": "Home Racer Program - Data Analyst",
+        "company": "Home Credit Vietnam",
+        "logo": "https://media.licdn.com/dms/image/C560BAQEW6PSsGbfR7w/company-logo_100_100/0/1659495647179/home_credit_vietnam_logo?e=2147483647&v=beta&t=V8KozgpyRRQZjLOIkaQ1boVlwGa9NNroAjiLfLEjAJ0",
+        "url": "https://vn.linkedin.com/jobs/view/home-racer-program-data-analyst-at-home-credit-vietnam-3937838511?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Work with key business owners to conduct business budgeting, forecasting, planning and adoption of new technologies for process optimization and long-term business objectives.",
+            "Gain hands-on experience and mentorship from your line manager, buddy & other top business leaders to work on practical projects and drive business initiatives."
+        ],
+        "requirements": [
+            "University graduate with GPA of 3/4 and 7.5/10 with less than 1-year working experience.",
+            "Proficient in English with a level of IELTS 6.5 or equivalent.",
+            "Proficiency in SQL or other programming languages to accelerate your development faster.",
+            "Passion for numbers & data analysis",
+            "Strong logical thinking, problem-solving skills, communication skills & presentation skills to detect the business situation then propose positive changes.",
+            "Effectively work both in a team & on your own.",
+            "Willingness to learn & absorb new knowledge.",
+            "Good Customer Obsession, Entrepreneurship, Integrity, Operation Excellence & Digital Savviness mindset as it’s our core Leadership Qualities."
+        ]
+    },
+    {
+        "title": "HCMC - Data Analyst (Middle)",
+        "company": "Amaris Consulting",
+        "logo": "https://media.licdn.com/dms/image/C4D0BAQHTIhUhiR4-nQ/company-logo_100_100/0/1630573466531/amaris_logo?e=2147483647&v=beta&t=-i7D5GgsuYpFiPZ8kcY9elCI7NYrOJP-zyFRUDaRptQ",
+        "url": "https://vn.linkedin.com/jobs/view/hcmc-data-analyst-middle-at-amaris-consulting-3959725080?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City",
+        "descriptions": [
+            "Design and build scalable data models",
+            "Clean and transform data",
+            "Develop records management processes and policies",
+            "Identify areas to increase efficiency and automation of processes",
+            "Set up and maintain automated data processes",
+            "Identify, evaluate, and implement external services and tools to support data validation and cleansing",
+            "Produce and track key performance indicators",
+            "Develop and support reporting processes",
+            "Monitor and audit data quality",
+            "Liaise with internal and external clients to fully understand data content",
+            "Gather, understand, and document detailed business requirements using appropriate tools and techniques",
+            "Design and carry out surveys and analyze survey data",
+            "Manipulate, analyze, and interpret complex data sets relating to the employer's business",
+            "Prepare reports for internal and external audiences using business analytics reporting tools",
+            "Create data dashboards, graphs, and visualizations",
+            "Provide sector and competitor benchmarking",
+            "Mine and analyze large datasets, draw valid inferences, and present them successfully to management using a reporting tool",
+            "Enable advanced analytics capabilities that provide meaningful business value through easy-to-understand data visualizations."
+        ],
+        "requirements": [
+            "Bachelor’s degree or college’s degree in Computer Science, Information Technology, Engineering, or equivalent",
+            "2+ years' experience with BI technologies and tools like Microsoft Power BI, Tableau",
+            "Advanced data analytics skills including Azure Data Factory, Data Bricks, Data Lake, HD Insights",
+            "Knowledge of SQL migration/modernization and Azure SQL Database",
+            "Proficiency in NoSQL databases such as Azure Cosmos DB, MongoDB, Cassandra",
+            "Familiarity with Azure Blob Storage, Azure Data Lake Store, Power BI, Analysis Services, and Machine Learning Services/Cognitive Services",
+            "Proven ability to build consensus between teams with differing architecture and design viewpoints and perspectives",
+            "Strong analytical and problem-solving skills",
+            "Good understanding of data and query optimization, query profiling, and query performance monitoring tools and techniques",
+            "Experience implementing solutions on multiple hardware platforms and operating systems",
+            "Self-motivated, responsible, conscientious, and detail oriented."
+        ]
+    },
+    {
+        "title": "Business Intelligence Specialist",
+        "company": "VitaDairy Việt Nam",
+        "logo": "https://media.licdn.com/dms/image/D560BAQEQVARmg18aRQ/company-logo_100_100/0/1719800303887/vitadairyvn_logo?e=2147483647&v=beta&t=keS4chukwPNilpFLVmjEiJRCVHnPusbT0HMHmf7yoLU",
+        "url": "https://vn.linkedin.com/jobs/view/business-intelligence-specialist-at-vitadairy-vi%E1%BB%87t-nam-3964485670?trk=public_jobs_topcard-title",
+        "location": "Ho Chi Minh City Metropolitan Area",
+        "descriptions": [
+            "Research & analyze consumer insight to build effective Dashboard.",
+            "Work with various internal teams, including data management, to ensure data quality and accuracy by conducting data validation, cleansing, and enrichment processes.",
+            "Survey Analysis Dashboard.",
+            "Create and develop short-term and long-term use cases according to business objective according to finding insights.",
+            "Develop insightful business analyses, that provide measurable value, business process improvements and solve challenging business problems."
+        ],
+        "requirements": [
+            "Manage data integration between platforms",
+            "Analyze & optimize data for smooth operations on SF Modules",
+            "Monitor and resolve problems related to data",
+            "Participate in strategic planning and decision-making related to data analytics and data management in the hub"
+        ]
+    }
+]
