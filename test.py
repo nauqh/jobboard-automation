@@ -14,20 +14,20 @@ def save_jobs_to_json(job_data, file_path):
         json.dump(job_data, file, ensure_ascii=False)
 
 
-# itviec_jobs_data = scrape_jobs("https://itviec.com/it-jobs/data-analyst-sql")
-# itviec_jobs_fsw = scrape_jobs("https://itviec.com/it-jobs/reactjs")
+itviec_jobs_data = scrape_jobs("https://itviec.com/it-jobs/data-analyst-sql")
+itviec_jobs_fsw = scrape_jobs("https://itviec.com/it-jobs/reactjs")
 
-# save_jobs_to_json(itviec_jobs_data, BASE + "itviec_jobs_data.json")
-# save_jobs_to_json(itviec_jobs_fsw, BASE + "itviec_jobs_fsw.json")
+save_jobs_to_json(itviec_jobs_data, BASE + "itviec_jobs_data.json")
+save_jobs_to_json(itviec_jobs_fsw, BASE + "itviec_jobs_fsw.json")
 
-# topcv_jobs_data = scrape_jobs_topcv(
-#     "https://www.topcv.vn/tim-viec-lam-data-analyst?exp=2")
-# topcv_jobs_fsw = scrape_jobs_topcv(
-#     "https://www.topcv.vn/tim-viec-lam-reactjs?exp=2")
+topcv_jobs_data = scrape_jobs_topcv(
+    "https://www.topcv.vn/tim-viec-lam-data-analyst?exp=2")
+topcv_jobs_fsw = scrape_jobs_topcv(
+    "https://www.topcv.vn/tim-viec-lam-reactjs?exp=2")
 
 
-# save_jobs_to_json(topcv_jobs_data, BASE + "topcv_jobs_data.json")
-# save_jobs_to_json(topcv_jobs_fsw, BASE + "topcv_jobs_fsw.json")
+save_jobs_to_json(topcv_jobs_data, BASE + "topcv_jobs_data.json")
+save_jobs_to_json(topcv_jobs_fsw, BASE + "topcv_jobs_fsw.json")
 
 linkedin_jobs_data = scrape_jobs_linkedin(
     "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data%20Analyst&location=Vietnam&f_E=2")
