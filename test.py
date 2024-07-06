@@ -12,7 +12,8 @@ def save_jobs_to_json(job_data, file_path):
         json.dump(job_data, file, ensure_ascii=False)
 
 
-itviec_jobs = scrape_jobs("https://itviec.com/it-jobs/data-analyst-sql")
+itviec_jobs_data = scrape_jobs("https://itviec.com/it-jobs/data-analyst-sql")
+itviec_jobs_fsw = scrape_jobs("https://itviec.com/it-jobs/reactjs")
 
-
-save_jobs_to_json(itviec_jobs, BASE + "itviec_jobs.json")
+save_jobs_to_json(itviec_jobs_data, BASE + "itviec_jobs_data.json")
+save_jobs_to_json(itviec_jobs_fsw, BASE + "itviec_jobs_fsw.json")
