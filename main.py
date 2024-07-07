@@ -68,6 +68,7 @@ class JobMatchingAssistant:
             job['suitability'] = self.evaluate_job_suitability(
                 job, candidate[get_folder_name(jobs_file)])
 
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
         with open(output_file, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=2)
 
@@ -86,8 +87,16 @@ def get_subfolder_names(path=None):
 
 
 if __name__ == "__main__":
+    BASE = 'data/raw'
+    subfolders = get_subfolder_names(BASE)
     assistant = JobMatchingAssistant()
-    assistant.process_jobs('data/raw/FSW/itviec_jobs_fsw.json',
-                           'data/processed/itviec_jobs_with_relevancy3.json')
-    # print(get_subfolder_names('data/raw/'))
-    # print(get_folder_name('data/raw/DS/linkedin_jobs.json'))
+
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(BASE, subfolder)
+        if os.path.isdir(subfolder_path):
+            for filename in os.listdir(subfolder_path):
+                if filename.endswith('.json'):
+                    jobs_file = os.path.join(subfolder_path, filename)
+                    output_file = f"data/processed/{os.path.splitext(filename)[0]}_with_relevancy.json"
+                    assistant.process_jobs(jobs_file, output_file)
+                print(f"Processed {filename}")
