@@ -3,3 +3,4 @@ env/*
 Notebook.ipynb
 *.pyc
 data/
+.ipynb_checkpoints
