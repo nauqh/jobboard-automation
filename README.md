@@ -1,8 +1,7 @@
 # Job Matching Assistant
 
-
 ## Overview
-<img align="right" width="300" src="banner.jpg">
+<img align="right" width="200" src="banner.jpg">
 
 This project automates the job search process by:
 
