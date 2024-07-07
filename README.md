@@ -1,6 +1,9 @@
 # Job Matching Assistant
 
+
 ## Overview
+<img align="right" width="300" src="banner.jpg">
+
 This project automates the job search process by:
 
 1. Crawling: Extracting job listings from multiple platforms (TopCV, ITviec, LinkedIn).
