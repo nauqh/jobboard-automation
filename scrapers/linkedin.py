@@ -18,7 +18,6 @@ def scrape_jobs_linkedin(url):
         attempts += 1
 
     job_data = []
-    print(ids)
     for id in ids:
         url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{id}"
 
