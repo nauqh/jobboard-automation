@@ -2,3 +2,4 @@
 env/*
 Notebook.ipynb
 *.pyc
+data2/
