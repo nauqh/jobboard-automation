@@ -38,7 +38,7 @@ class JobMatchingAssistant:
         ]
         return StructuredOutputParser.from_response_schemas(schema)
 
-    def evaluate_job_suitability(self, job, candidate):
+    def __evaluate_job_suitability(self, job, candidate):
         title = job['title']
         description = job['descriptions']
         requirement = job['requirements']
@@ -65,7 +65,7 @@ class JobMatchingAssistant:
             candidate = json.load(file)
 
         for job in data:
-            job['suitability'] = self.evaluate_job_suitability(
+            job['suitability'] = self.__evaluate_job_suitability(
                 job, candidate[get_folder_name(jobs_file)])
 
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
