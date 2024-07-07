@@ -1,6 +1,5 @@
 # Job Matching Assistant
 
-## Overview
 <img align="right" width="200" src="banner.jpg">
 
 This project automates the job search process by:
@@ -18,7 +17,7 @@ This project automates the job search process by:
 
 ## File Structure
 ```
-project_root/
+root/
 ├── data/
 │   ├── processed/       (Filtered job data with relevancy scores)
 │   └── raw/             (Raw job data scraped from sources)
@@ -26,9 +25,10 @@ project_root/
 │   ├── itviec.py        
 │   ├── linkedin.py      
 │   └── topcv.py         
-├── .env                (Environment variables - API keys, etc.)
+├── .env                
 ├── .gitignore
-├── main.py              (Main execution script)
+├── scrape.py              (Main job scraper script)
+├── filter.py              (Main job filter script)
 └── README.md
 ```
 
