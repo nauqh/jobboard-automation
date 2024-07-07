@@ -1,7 +1,7 @@
 # Job Matching Assistant
 
 ## Project Overview
-This project is a job matching assistant designed to evaluate job descriptions for their suitability to a given candidate. It scrapes job listings from websites like TopCV and ITviec, processes these listings, and then evaluates them against a candidate's profile to determine their relevance. The assistant uses criteria such as the candidate's years of experience and toolset proficiency to make its evaluations.
+This project is a job matching assistant designed to evaluate job descriptions for their suitability to a given candidate. It scrapes job listings from websites like **TopCV**, **ITviec** and **LinkedIn**, processes these listings, and then evaluates them against a candidate's profile to determine their relevance. The assistant uses criteria such as the candidate's years of experience and toolset proficiency to make its evaluations.
 
 ## File Structure
 
