@@ -3,6 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
 from dotenv import load_dotenv
 import json
+import os
 
 load_dotenv()
 
@@ -47,7 +48,7 @@ class JobMatchingAssistant:
                 "title": title,
                 "description": description,
                 "requirement": requirement,
-                "candidate": candidate['DS']
+                "candidate": candidate
             }
         )
 
@@ -57,22 +58,36 @@ class JobMatchingAssistant:
 
         return suitability
 
-    def process_jobs(self, jobs_file, candidate_file, output_file):
+    def process_jobs(self, jobs_file, output_file):
         with open(jobs_file, 'r', encoding='utf-8') as file:
             data = json.load(file)
-        with open(candidate_file, 'r') as file:
+        with open('data/profile.json', 'r') as file:
             candidate = json.load(file)
 
-        # Iterate over each job entry in the list
         for job in data:
-            job['suitability'] = self.evaluate_job_suitability(job, candidate)
+            job['suitability'] = self.evaluate_job_suitability(
+                job, candidate[get_folder_name(jobs_file)])
 
         with open(output_file, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=2)
 
 
+def get_folder_name(path=None):
+    if path is None:
+        path = os.getcwd()
+    return os.path.basename(os.path.dirname(path))
+
+
+def get_subfolder_names(path=None):
+    if path is None:
+        path = os.getcwd()
+
+    return os.listdir(path)
+
+
 if __name__ == "__main__":
     assistant = JobMatchingAssistant()
-    assistant.process_jobs('data/raw/linkedin_jobs.json',
-                           'data/profile.json',
-                           'data/processed/linkedin_jobs_with_relevancy2.json')
+    assistant.process_jobs('data/raw/FSW/itviec_jobs_fsw.json',
+                           'data/processed/itviec_jobs_with_relevancy3.json')
+    # print(get_subfolder_names('data/raw/'))
+    # print(get_folder_name('data/raw/DS/linkedin_jobs.json'))
