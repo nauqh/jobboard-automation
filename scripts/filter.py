@@ -87,6 +87,8 @@ def get_subfolder_names(path=None):
 
 
 if __name__ == "__main__":
+
+    # NOTE: Process jobs
     BASE = 'data/raw'
     subfolders = get_subfolder_names(BASE)
     assistant = JobMatchingAssistant()
@@ -100,3 +102,23 @@ if __name__ == "__main__":
                     output_file = f"data/processed/{os.path.splitext(filename)[0]}_with_relevancy.json"
                     assistant.process_jobs(jobs_file, output_file)
                 print(f"Processed {filename}")
+
+    # NOTE: Filter jobs
+    os.makedirs(os.path.dirname('data/filter/'), exist_ok=True)
+    filtered = 0
+    for path in get_subfolder_names('data/processed'):
+        with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
+            filtered_jobs = [
+                job
+                for job in json.load(file)
+                if job['suitability'] >= 50
+            ]
+            output = os.path.join(
+                'data/filter',
+                path[:-len('_with_relevancy.json')] + '.json'
+            )
+            with open(output, 'w', encoding='utf-8') as file:
+                json.dump(filtered_jobs, file, ensure_ascii=False, indent=2)
+            filtered += len(filtered_jobs)
+
+    print(f"Filtered {filtered} jobs")
