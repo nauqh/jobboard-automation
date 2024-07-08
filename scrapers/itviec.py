@@ -37,22 +37,22 @@ def scrape_jobs(url):
 
         # Handle different types of list items (Some pages have ul and li, some pages have p)
         descriptions = [
-            f"- {li.get_text(strip=True)}"
+            f"{li.get_text(strip=True)}"
             for ul in job_description.find_all("ul")
             for li in ul.find_all("li")
         ]
         descriptions += [
-            f"- {p.get_text(strip=True)}"
+            f"{p.get_text(strip=True)}"
             for p in job_description.find_all("p")
         ]
 
         requirements = [
-            f"- {li.get_text(strip=True)}"
+            f"{li.get_text(strip=True)}"
             for ul in job_requirement.find_all("ul")
             for li in ul.find_all("li")
         ]
         requirements += [
-            f"- {p.get_text(strip=True)}"
+            f"{p.get_text(strip=True)}"
             for p in job_requirement.find_all("p")
         ]
 
