@@ -36,25 +36,25 @@ def scrape_jobs(url):
         job_requirement = soup.find_all('div', class_='imy-5 paragraph')[1]
 
         # Handle different types of list items (Some pages have ul and li, some pages have p)
-        descriptions = "\n".join([
+        descriptions = [
             f"- {li.get_text(strip=True)}"
             for ul in job_description.find_all("ul")
             for li in ul.find_all("li")
-        ])
-        descriptions += "\n".join([
+        ]
+        descriptions += [
             f"- {p.get_text(strip=True)}"
             for p in job_description.find_all("p")
-        ])
+        ]
 
-        requirements = "\n".join([
+        requirements = [
             f"- {li.get_text(strip=True)}"
             for ul in job_requirement.find_all("ul")
             for li in ul.find_all("li")
-        ])
-        requirements += "\n".join([
+        ]
+        requirements += [
             f"- {p.get_text(strip=True)}"
             for p in job_requirement.find_all("p")
-        ])
+        ]
 
         job_data.append({
             'title': title,
