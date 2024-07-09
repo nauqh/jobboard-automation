@@ -89,24 +89,27 @@ def get_subfolder_names(path=None):
 if __name__ == "__main__":
 
     # NOTE: Process jobs
-    BASE = 'data/raw'
-    subfolders = get_subfolder_names(BASE)
-    assistant = JobMatchingAssistant()
+    # BASE = 'data/raw'
+    # subfolders = get_subfolder_names(BASE)
+    # assistant = JobMatchingAssistant()
 
-    for subfolder in subfolders:
-        subfolder_path = os.path.join(BASE, subfolder)
-        if os.path.isdir(subfolder_path):
-            for filename in os.listdir(subfolder_path):
-                if filename.endswith('.json'):
-                    jobs_file = os.path.join(subfolder_path, filename)
-                    output_file = f"data/processed/{os.path.splitext(filename)[0]}_with_relevancy.json"
-                    assistant.process_jobs(jobs_file, output_file)
-                print(f"Processed {filename}")
+    # for subfolder in subfolders:
+    #     subfolder_path = os.path.join(BASE, subfolder)
+    #     if os.path.isdir(subfolder_path):
+    #         for filename in os.listdir(subfolder_path):
+    #             if filename.endswith('.json'):
+    #                 jobs_file = os.path.join(subfolder_path, filename)
+    #                 output_file = f"data/processed/{os.path.splitext(filename)[0]}_with_relevancy.json"
+    #                 assistant.process_jobs(jobs_file, output_file)
+    #             print(f"Processed {filename}")
 
     # NOTE: Filter jobs
     os.makedirs(os.path.dirname('data/filter/'), exist_ok=True)
     filtered = 0
+    total = 0
     for path in get_subfolder_names('data/processed'):
+        with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
+            total += len(json.load(file))
         with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
             filtered_jobs = [
                 job
@@ -121,5 +124,4 @@ if __name__ == "__main__":
                 json.dump(filtered_jobs, file, ensure_ascii=False, indent=2)
             filtered += len(filtered_jobs)
 
-    print(
-        f"Filtered {filtered} jobs out of {len(get_subfolder_names('data/processed'))}")
+    print(f"Filtered {filtered} jobs out of {total}")
