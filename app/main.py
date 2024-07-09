@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, status
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List
 
 # Schemas
 from pydantic import BaseModel
@@ -30,6 +31,7 @@ class JobIn(JobBase):
     location: str
     descriptions: list
     requirements: list
+    tag: str
     suitability: int
     uploaded_at: Optional[datetime] = None
 
@@ -54,14 +56,13 @@ def root():
     return {"message": "Root endpoint"}
 
 
-@app.post("/jobs", status_code=status.HTTP_201_CREATED, response_model=JobBase)
-def create_note(data: JobIn, db: Session = Depends(get_db)):
-    job = models.Job(**data.model_dump())
-
-    db.add(job)
+@app.post("/jobs", status_code=status.HTTP_201_CREATED)
+def create_note(data: List[JobIn], db: Session = Depends(get_db)):
+    jobs = [models.Job(**job.model_dump()) for job in data]
+    db.add_all(jobs)
     db.commit()
-    db.refresh(job)
-    return job
+
+    return f"Added {len(jobs)} jobs"
 
 
 @app.get("/jobs")
