@@ -13,8 +13,9 @@ def scrape_jobs_linkedin(url):
         soup = BeautifulSoup(response.text, 'html.parser')
         jobs = soup.find_all('li')
         for job in jobs:
-            base_card = job.find('div', class_='base-search-card')
-            ids.append(base_card.get('data-entity-urn').split(":")[3])
+            base_card = job.find('div', {"class": "base-card"})
+            if base_card is not None:
+                ids.append(base_card.get('data-entity-urn').split(":")[3])
         attempts += 1
 
     job_data = []
