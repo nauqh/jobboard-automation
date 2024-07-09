@@ -33,5 +33,8 @@ print("Scraped jobs from TopCV")
 # NOTE: LinkedIn
 linkedin_jobs_data = scrape_jobs_linkedin(
     "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data%20Analyst&location=Vietnam&f_E=2")
+linkedin_jobs_fsw = scrape_jobs_linkedin(
+    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=React.js&location=Vietnam&f_TPR=&f_E=2")
 save_jobs_to_json(linkedin_jobs_data, BASE + "DS/linkedin_jobs_data.json")
+save_jobs_to_json(linkedin_jobs_fsw, BASE + "FSW/linkedin_jobs_fsw.json")
 print("Scraped jobs from LinkedIn")

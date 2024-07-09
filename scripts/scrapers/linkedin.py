@@ -18,10 +18,12 @@ def scrape_jobs_linkedin(url):
         attempts += 1
 
     job_data = []
+    print(ids)
     for id in ids:
         url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{id}"
+        retries = 0
 
-        while True:
+        while retries < 5:
             try:
                 response = requests.get(url)
                 soup = BeautifulSoup(response.text, 'html.parser')
@@ -50,5 +52,8 @@ def scrape_jobs_linkedin(url):
                 break
             except Exception as e:
                 print(f"{e}. Retrying...")
+                retries += 1
                 time.sleep(2)
+        else:
+            print(f"Skipping ID {id} after 5 retries.")
     return job_data
