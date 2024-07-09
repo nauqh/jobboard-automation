@@ -42,7 +42,10 @@ def scrape_jobs_topcv(url):
     for job in jobs:
         title = job.find('h3').text.strip()
         company = job.find('a', class_='company').text.strip()
-        logo = job.find('img')['src']
+        try:
+            logo = job.find('img')['src']
+        except Exception:
+            logo = job.find('img')['data-src']
         job_url = job.find('a')['href']
         location = job.find('label', class_='address').text.strip()
         salary = job.find('label', class_='title-salary').text.strip()

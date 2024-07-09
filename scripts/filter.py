@@ -121,4 +121,5 @@ if __name__ == "__main__":
                 json.dump(filtered_jobs, file, ensure_ascii=False, indent=2)
             filtered += len(filtered_jobs)
 
-    print(f"Filtered {filtered} jobs")
+    print(
+        f"Filtered {filtered} jobs out of {len(get_subfolder_names('data/processed'))}")
