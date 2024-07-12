@@ -22,5 +22,6 @@ class Job(Base):
                          server_default=func.now(), nullable=False)
 
     __table_args__ = (
-        UniqueConstraint('title', 'company', name='_title_company_uc'),
+        UniqueConstraint('title', 'company', 'uploaded_at',
+                         name='_title_company_uc'),
     )

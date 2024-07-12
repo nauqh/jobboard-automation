@@ -26,9 +26,9 @@ def get_subfolder_names(path=None):
 # run_script()
 URL = "http://127.0.0.1:8000"
 
-for path in get_subfolder_names('data/processed'):
+for path in get_subfolder_names('scripts/data/processed/'):
     tag = 'data' if 'data' in path else 'fsw'
-    with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
+    with open(os.path.join('scripts/data/processed', path), 'r', encoding='utf-8') as file:
         data = json.load(file)
         for item in data:
             item['tag'] = tag
