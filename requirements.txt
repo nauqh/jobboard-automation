@@ -1,7 +1,4 @@
-bs4
 python-dotenv
-langchain
-langchain-openai
 sqlalchemy
 fastapi[all]
 psycopg2-binary
