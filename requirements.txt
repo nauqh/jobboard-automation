@@ -4,3 +4,4 @@ langchain
 langchain-openai
 sqlalchemy
 fastapi[all]
+psycopg2-binary
