@@ -17,24 +17,23 @@ This project automates the job search process by:
 
 ## File Structure
 ```
-root/
+scripts/
 ├── data/
-│   ├── processed/       (Filtered job data with relevancy scores)
+│   ├── filter/          (Filtered job data with relevancy scores > 50)
+│   ├── processed/       (Evaluate job data with relevancy scores)
 │   └── raw/             (Raw job data scraped from sources)
 ├── scrapers/            (Scripts for scraping job boards)
 │   ├── itviec.py        
 │   ├── linkedin.py      
 │   └── topcv.py         
-├── .env                
-├── .gitignore
 ├── scrape.py              (Main job scraper script)
 ├── filter.py              (Main job filter script)
-└── README.md
+├── script.sh              (Combined pipeline in bash script)
 ```
 
 ## Installation and Setup
 ### 1. Prerequisites:
-- Ensure Python 3.x and required packages (`bs4`, `urllib`, `json`, `datetime`, `dotenv`, `langchain_openai`, `langchain_core`) are installed.
+- Ensure Python 3.x and required packages (`bs4`, `requests`, `json`, `datetime`, `dotenv`, `langchain_openai`, `langchain_core`) are installed.
 - Install required packages: `pip install -r requirements.txt`
 - OpenAI API key (add to your `.env` file)
 
