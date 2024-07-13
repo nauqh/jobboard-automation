@@ -57,7 +57,7 @@ def root():
 
 
 @app.post("/jobs", status_code=status.HTTP_201_CREATED)
-def create_note(data: List[JobIn], db: Session = Depends(get_db)):
+def add_jobs(data: List[JobIn], db: Session = Depends(get_db)):
     jobs = [models.Job(**job.model_dump()) for job in data]
     db.add_all(jobs)
     db.commit()
@@ -65,9 +65,23 @@ def create_note(data: List[JobIn], db: Session = Depends(get_db)):
     return f"Added {len(jobs)} jobs"
 
 
-@app.get("/jobs")
-def get_jobs_by_company(company: str, db: Session = Depends(get_db)):
-    submissions = db.query(models.Job).filter(
-        models.Job.company == company).order_by(models.Job.uploaded_at.desc()).all()
+@app.get("/jobs", response_model=List[JobBase])
+def get_jobs(company: str = None, db: Session = Depends(get_db)):
+    """
+    Retrieve jobs based on company.
+
+    Query params:
+    - company: The name of the company
+
+    Returns:
+    - submissions (List[models.Job]): Jobs posted from the company
+    """
+    if company:
+        submissions = db.query(models.Job).filter(
+            models.Job.company == company).order_by(models.Job.uploaded_at.desc()).all()
+
+    else:
+        submissions = db.query(models.Job).order_by(
+            models.Job.uploaded_at.desc()).all()
 
     return submissions
