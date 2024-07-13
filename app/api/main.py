@@ -12,6 +12,13 @@ from typing import Optional
 from . import models
 from .database import engine, get_db
 
+"""
+DATABASE STATUS
+
+Current storage: 198MB (62 jobs)
+Max storage: 5GB
+"""
+
 models.Base.metadata.create_all(bind=engine)
 
 
