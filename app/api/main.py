@@ -15,7 +15,7 @@ from .database import engine, get_db
 """
 DATABASE STATUS
 
-Current storage: 198MB (62 jobs)
+Current storage: 198MB
 Max storage: 5GB
 """
 
@@ -45,8 +45,8 @@ class JobIn(JobBase):
 
 app = FastAPI(
     title='Job Board Automation',
-    summary="Storage for jobs",
-    version='0.0.1'
+    summary="Storage for job crawlers",
+    version='0.0.2'
 )
 
 app.add_middleware(
