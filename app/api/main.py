@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Depends, status
+from fastapi import FastAPI, Depends, status, HTTPException, Request
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
+import os
 
 # Schemas
 from pydantic import BaseModel
@@ -64,11 +65,20 @@ def root():
     return {"message": "Root endpoint"}
 
 
+def get_password(request: Request):
+    if not request.headers.get("password"):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Password required")
+
+    return request.headers.get("password")
+
+
 @app.post("/jobs", status_code=status.HTTP_201_CREATED)
-def add_jobs(data: List[JobIn], db: Session = Depends(get_db)):
-    """
-    Post jobs to database.
-    """
+async def add_jobs(data: List[JobIn], db: Session = Depends(get_db), password: str = Depends(get_password)):
+    if password != os.environ["PATH_PWD"]:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect password")
+
     jobs = [models.Job(**job.model_dump()) for job in data]
     db.add_all(jobs)
     db.commit()
