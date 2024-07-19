@@ -77,29 +77,36 @@ def add_jobs(data: List[JobIn], db: Session = Depends(get_db)):
 
 
 @app.get("/jobs", response_model=List[JobBase])
-def get_jobs(company: str = None, filtered: bool = False,  db: Session = Depends(get_db)):
+def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: Session = Depends(get_db)):
     """
     Get jobs from database.
 
-    Query params:
-        company (str, optional): Get jobs from a specific company. Defaults to None.
-        filtered (bool, optional): Get jobs from the current week. Defaults to False.
+    Args:
+        company (str, optional): Filter jobs by a specific company. Defaults to None.
+        filtered (bool, optional): Apply weekly suitability filtering. When `True`, only jobs uploaded in the current week and with a suitability of 50 or higher are returned. Defaults to False.
+        tag (str, optional): Filter jobs by a specific tag. Defaults to None.
 
     Returns:
-        List[JobBase]: A list of jobs
+        List[JobBase]: A list of job postings that match the specified filters, sorted by the upload date.
     """
 
+    query = db.query(models.Job)
+
     if filtered:
-        submissions = db.query(models.Job).filter(
+        query = query.filter(
             func.date_trunc('week', models.Job.uploaded_at) == func.date_trunc(
                 'week', func.current_date()),
             models.Job.suitability >= 50
-        ).all()
-    elif company:
-        submissions = db.query(models.Job).filter(
-            models.Job.company == company).order_by(models.Job.uploaded_at.desc()).all()
-    else:
-        submissions = db.query(models.Job).order_by(
-            models.Job.uploaded_at.desc()).all()
+        )
+    if company:
+        query = query.filter(models.Job.company == company)
+
+    if tag:
+        query = query.filter(models.Job.tag == tag)
+
+    query = query.order_by(models.Job.uploaded_at.desc(
+    ) if company or not filtered else models.Job.uploaded_at)
+
+    submissions = query.all()
 
     return submissions
