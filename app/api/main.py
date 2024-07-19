@@ -27,6 +27,7 @@ class JobBase(BaseModel):
     title: str
     company: str
     url: str
+    tag: str
     suitability: int
     uploaded_at: Optional[datetime] = None
 
@@ -39,7 +40,6 @@ class JobIn(JobBase):
     location: str
     descriptions: list
     requirements: list
-    tag: str
     suitability: int
     uploaded_at: Optional[datetime] = None
 
