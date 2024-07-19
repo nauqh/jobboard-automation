@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, status
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 
@@ -76,14 +77,26 @@ def add_jobs(data: List[JobIn], db: Session = Depends(get_db)):
 
 
 @app.get("/jobs", response_model=List[JobBase])
-def get_jobs(company: str = None, db: Session = Depends(get_db)):
+def get_jobs(company: str = None, filtered: bool = False,  db: Session = Depends(get_db)):
     """
-    Retrieve jobs based on company.
+    Get jobs from database.
+
+    Query params:
+        company (str, optional): Get jobs from a specific company. Defaults to None.
+        filtered (bool, optional): Get jobs from the current week. Defaults to False.
+
+    Returns:
+        List[JobBase]: A list of jobs
     """
-    if company:
+
+    if filtered:
+        submissions = db.query(models.Job).filter(
+            func.date_trunc('week', models.Job.uploaded_at) == func.date_trunc(
+                'week', func.current_date())
+        ).all()
+    elif company:
         submissions = db.query(models.Job).filter(
             models.Job.company == company).order_by(models.Job.uploaded_at.desc()).all()
-
     else:
         submissions = db.query(models.Job).order_by(
             models.Job.uploaded_at.desc()).all()
