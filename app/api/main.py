@@ -92,12 +92,12 @@ def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: 
     Get jobs from database.
 
     Args:
-        - company (str, optional): Filter jobs by a specific company. Defaults to None.
-        - filtered (bool, optional): Apply weekly suitability filtering. When `True`, only jobs uploaded in the current week and with a suitability of 50 or higher are returned. Defaults to False.
-        - tag (str, optional): Filter jobs by a specific tag. `fsw` or `data`. Defaults to None.
+        \n- company (str, optional): Filter jobs by a specific company. Defaults to None.
+        \n- filtered (bool, optional): Apply weekly suitability filtering. When `True`, only jobs uploaded in the current week and with a suitability of 50 or higher are returned. Defaults to False.
+        \n- tag (str, optional): Filter jobs by a specific tag. `fsw` or `data`. Defaults to None.
 
     Returns:
-        - A list of job postings that match the specified filters, sorted by the upload date.
+        \n- A list of job postings that match the specified filters, sorted by the upload date.
     """
 
     query = db.query(models.Job)
