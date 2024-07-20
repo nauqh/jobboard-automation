@@ -49,9 +49,11 @@ OPENAI_API_KEY=your_api_key_here
 
 ## Usage
 ### 1. Crawl Job Data:
-Run `scrape.py`. This will scrape the specified job boards and save raw data to `data/raw/`.
+Run `scripts/scrape.py`. This will scrape the specified job boards and save raw data to `data/raw/`.
 ### 2. Filtered and Scored Jobs:
-Run `filter.py` and review the output files in `data/processed/`. Each file will contain jobs tailored to the candidate's profile, with a "suitability" score indicating their relevance.
+Run `scripts/filter.py` and review the output files in `data/processed/`. Each file will contain jobs tailored to the candidate's profile, with a "suitability" score indicating their relevance.
+### 3. Upload Jobs:
+Run `scripts/upload.py` to upload the processed jobs to the API.
 
 ## Customization
 - Candidate Profile: Adjust `data/profile.json` to accurately reflect the candidate's information.
