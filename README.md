@@ -15,7 +15,7 @@ This project automates the job search process by:
 - **Customizable**: Easily adapt the candidate profile or the filtering criteria to fit specific needs.
 - **Efficient**: Automates a time-consuming aspect of job hunting.
 
-<img width="500" src="diagram.png">
+<img width="500" src="pipeline.png">
 
 ## File Structure
 ```
