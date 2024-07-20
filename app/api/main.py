@@ -45,6 +45,16 @@ class JobIn(JobBase):
     uploaded_at: Optional[datetime] = None
 
 
+class JobOut(JobBase):
+    title: str
+    company: str
+    logo: str
+    url: str
+    location: str
+    suitability: int
+    uploaded_at: Optional[datetime] = None
+
+
 app = FastAPI(
     title='Job Board Automation',
     summary="Storage for job crawlers",
@@ -86,7 +96,7 @@ async def add_jobs(data: List[JobIn], db: Session = Depends(get_db), password: s
     return f"Added {len(jobs)} jobs"
 
 
-@app.get("/jobs", response_model=List[JobBase])
+@app.get("/jobs", response_model=List[JobOut])
 def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: Session = Depends(get_db)):
     """
     Get jobs from database.
