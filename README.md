@@ -62,6 +62,6 @@ Run `scripts/upload.py` to upload the processed jobs to the API.
 - Additional Job Boards: Expand the `scrapers/` directory with scripts to crawl more platforms.
 
 ## Future Enhancements
-- UI: Build a user interface for easier input of candidate details and viewing of results.
-- Scheduler: Automatically run the scraper on a schedule to keep job data fresh.
-- Sorting: Add options to sort the filtered jobs by relevancy, date posted, or other factors.
+- [ ] UI: Build a user interface for easier input of candidate details and viewing of results.
+- [x] Scheduler: Automatically run the scraper on a schedule to keep job data fresh.
+- [x] Sorting: Add options to sort the filtered jobs by relevancy, date posted, or other factors.
