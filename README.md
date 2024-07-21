@@ -30,6 +30,7 @@ scripts/
 │   └── topcv.py         
 ├── scrape.py              (Main job scraper script)
 ├── filter.py              (Main job filter script)
+├── upload.py              (Main job upload script)
 ├── script.sh              (Combined pipeline in bash script)
 ```
 
