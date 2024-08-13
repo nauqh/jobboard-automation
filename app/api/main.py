@@ -39,8 +39,8 @@ class JobIn(JobBase):
     logo: str
     url: str
     location: str
-    descriptions: list
-    requirements: list
+    descriptions: list | str
+    requirements: list | str
     suitability: int
     uploaded_at: Optional[datetime] = None
 
