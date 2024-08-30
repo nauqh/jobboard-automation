@@ -31,10 +31,26 @@ class JobScraper:
         else:
             raise ValueError(f"Unsupported platform: {platform}")
 
+    def load_json_files_from_folder(self, folder_path):
+        data = []
+        for file_name in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, file_name)
+            if file_name.endswith('.json'):
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    data.extend(json.load(file))
+        return data
+
+    def combine_json_files(self, output_name, folder_name):
+        folder_path = os.path.join(self.base_path, folder_name)
+        data = self.load_json_files_from_folder(folder_path)
+        output_path = os.path.join(self.base_path, output_name)
+        with open(output_path, 'w', encoding='utf-8') as output_file:
+            json.dump(data, output_file, ensure_ascii=False, indent=4)
+        print(f"Combined JSON files into {output_name}")
+
 
 if __name__ == "__main__":
-    BASE = "data/raw/"
-    scraper = JobScraper(BASE)
+    scraper = JobScraper("data/raw/")
 
     # ITViec Scraping
     scraper.scrape_and_save(
@@ -53,3 +69,7 @@ if __name__ == "__main__":
         'linkedin', "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data%20Analyst&location=Vietnam&f_E=2", "DS/linkedin_jobs_data.json")
     scraper.scrape_and_save(
         'linkedin', "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=React.js&location=Vietnam&f_TPR=&f_E=2", "FSW/linkedin_jobs_fsw.json")
+
+    # Combine JSON files
+    scraper.combine_json_files("ds_jobs.json", "DS")
+    scraper.combine_json_files("fsw_jobs.json", "FSW")
