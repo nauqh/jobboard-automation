@@ -52,7 +52,6 @@ def scrape_jobs_linkedin(url):
                 })
                 break
             except Exception as e:
-                print(f"{e}. Retrying...")
                 retries += 1
                 time.sleep(2)
         else:
