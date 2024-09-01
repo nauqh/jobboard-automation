@@ -82,15 +82,20 @@ def process_jobs(jobs_file, output_file, candidate):
 if __name__ == '__main__':
     evaluator = JobEvaluator()
 
-    files_to_process = ['ds_jobs', 'fsw_jobs']
+    # Use a dictionary to map filenames to their corresponding candidates
+    files_to_process = {
+        'ds_jobs': 'ds',
+        'fsw_jobs': 'fsw'
+    }
 
     with open('profile.json', 'r') as file:
         candidates = json.load(file)
 
-    for filename in files_to_process:
-        input_file = os.path.join('data/raw', filename + '.json')
-        output_file = f"data/processed/{filename}.json"
-        candidate = candidates['ds'] if 'ds' in filename else candidates['fsw']
+    # Iterate over the files and process them
+    for filename, candidate_key in files_to_process.items():
+        input_file = os.path.join('data/raw', f"{filename}.json")
+        output_file = os.path.join('data/processed', f"{filename}.json")
+        candidate = candidates[candidate_key]
 
         process_jobs(input_file, output_file, candidate)
 
