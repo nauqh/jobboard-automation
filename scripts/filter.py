@@ -1,127 +1,104 @@
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
-from langchain.output_parsers import StructuredOutputParser, ResponseSchema
-from dotenv import load_dotenv
-import json
+import instructor
+from pydantic import BaseModel, Field
+from openai import OpenAI
+from enum import Enum
 import os
+import json
 
-load_dotenv()
+
+class JobRelevance(str, Enum):
+    """Enumeration of job relevance to the candidate."""
+
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
+    IRRELEVANT = "irrelevant"
 
 
-class JobMatchingAssistant:
-    def __init__(self, model="gpt-3.5-turbo-0125"):
-        self.llm = ChatOpenAI(model=model)
-        self.prompt = self.__create_prompt()
-        self.chain = self.prompt | self.llm
+class Reply(BaseModel):
+    relevancy: JobRelevance = Field(
+        description="The relevance of the job to the candidate, with levels of high, medium, low, and irrelevant")
+    reason: str = Field(
+        description="Why do you think this job is relevant/irrelevant to the candidate")
 
-    def __create_prompt(self):
-        return ChatPromptTemplate.from_messages(
-            [
-                (
-                    "system",
-                    """You are a job matching assistant that evaluates job descriptions and requirements for their suitability to a given candidate. You will be provided with a job's {title}, {description}, and {requirement}, and you will determine if the job is relevant to the given {candidate}. The criteria for determining relevance include the candidate's years of experience and toolset proficiency. Remove any job that requires more than 2 years of experience.
 
-                    Provide a single integer percentage indicating how relevant this job is to the candidate, with 100 being the most suitable and 0 being the least suitable. If the job requires more than 2 years of experience, mark it as irrelevant.
+class JobEvaluator:
+    def __init__(self):
+        self.client = instructor.from_openai(OpenAI())
 
-                    Output your response in JSON format with a sample response as follows:
-                        "suitability": number
-                    """,
-                )
-            ]
+    def __get_content(self):
+        return """
+        You are a job matching assistant that evaluates job descriptions and requirements for their suitability to a given candidate. You will be provided with a job's {title}, {description}, and {requirement}, and you will determine if the job is relevant to the given {candidate}. 
+
+        There are 4 levels of job relevancy to the candidate: high, medium, low, and irrelevant:
+            - High: the job is highly relevant to the candidate. The candidate's skills, experience, and qualifications align closely with the job's requirements, making them a strong match for the position.
+            - Medium: the job may be relevant to the candidate. There is some requirement that is not fully aligned with the candidate's profile, but the candidate can learn or adapt to it in a short period of time since it is related to the candidate's existing skill set.
+            - Low: the job is only marginally relevant to the candidate. The position might require skills or experience that the candidate does not possess or is only vaguely related to their background. The candidate may need significant upskilling or retraining to be a good fit.
+            - Irrelevant: the job is not suitable for the candidate. The skills, experience, or qualifications required for the job do not align with the candidate's profile, making them an unlikely match for the position.
+
+        The criteria for determining relevance include the candidate's years of experience and toolset proficiency. If the job requires more than 2 years of experience, mark it as irrelevant.
+        """
+
+    def evaluate_job(self, job: dict, candidate: str) -> Reply:
+        content = self.__get_content()
+
+        title, description, requirement = job['title'], job['descriptions'], job['requirements']
+
+        reply = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            response_model=Reply,
+            messages=[
+                {
+                    "role": "system",
+                    "content": content,
+                },
+                {
+                    "role": "user",
+                    "content": f"""Hi there, please validate this job for me.
+                    "title": {title},
+                    "description": {description},
+                    "requirement": {requirement},
+                    "candidate": "{candidate}""",
+                },
+            ],
         )
-
-    def __get_parser(self):
-        schema = [
-            ResponseSchema(
-                name='suitability', description="How suitable this job is to the candidate."
-            ),
-        ]
-        return StructuredOutputParser.from_response_schemas(schema)
-
-    def __evaluate_job_suitability(self, job, candidate):
-        title = job['title']
-        description = job['descriptions']
-        requirement = job['requirements']
-
-        relevancy = self.chain.invoke(
-            {
-                "title": title,
-                "description": description,
-                "requirement": requirement,
-                "candidate": candidate
-            }
-        )
-
-        # Parse the suitability score from the relevancy response
-        suitability = self.__get_parser().parse(
-            relevancy.content)['suitability']
-
-        return suitability
-
-    def process_jobs(self, jobs_file, output_file):
-        with open(jobs_file, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-        with open('profile.json', 'r') as file:
-            candidate = json.load(file)
-
-        for job in data:
-            job['suitability'] = self.__evaluate_job_suitability(
-                job, candidate[get_folder_name(jobs_file)])
-
-        os.makedirs(os.path.dirname(output_file), exist_ok=True)
-        with open(output_file, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=2)
+        return reply
 
 
-def get_folder_name(path=None):
-    if path is None:
-        path = os.getcwd()
-    return os.path.basename(os.path.dirname(path))
+def process_jobs(jobs_file, output_file, candidate):
+    with open(jobs_file, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    for job in data:
+        resp = evaluator.evaluate_job(job, candidate)
+        job['relevancy'] = resp.relevancy.value
+        job['reason'] = resp.reason
+
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    with open(output_file, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False)
 
 
-def get_subfolder_names(path=None):
-    if path is None:
-        path = os.getcwd()
+if __name__ == '__main__':
+    evaluator = JobEvaluator()
 
-    return os.listdir(path)
+    files_to_process = ['ds_jobs', 'fsw_jobs']
 
+    with open('profile.json', 'r') as file:
+        candidates = json.load(file)
 
-if __name__ == "__main__":
+    for filename in files_to_process:
+        input_file = os.path.join('data/raw', filename + '.json')
+        output_file = f"data/processed/{filename}.json"
+        candidate = candidates['ds'] if 'ds' in filename else candidates['fsw']
 
-    # NOTE: Process jobs
-    BASE = 'data/raw'
-    subfolders = get_subfolder_names(BASE)
-    assistant = JobMatchingAssistant()
+        process_jobs(input_file, output_file, candidate)
 
-    for subfolder in subfolders:
-        subfolder_path = os.path.join(BASE, subfolder)
-        if os.path.isdir(subfolder_path):
-            for filename in os.listdir(subfolder_path):
-                if filename.endswith('.json'):
-                    jobs_file = os.path.join(subfolder_path, filename)
-                    output_file = f"data/processed/{os.path.splitext(filename)[0]}_with_relevancy.json"
-                    assistant.process_jobs(jobs_file, output_file)
-                print(f"Processed {filename}")
+    # # NOTE: Filter relevant jobs
+    # with open('data/processed/ds_jobs.json', 'r', encoding='utf-8') as file:
+    #     jobs = json.load(file)
+    #     relevant_jobs = [
+    #         job for job in jobs if job['relevancy'] != "irrelevant"]
 
-    # NOTE: Filter jobs
-    os.makedirs(os.path.dirname('data/filter/'), exist_ok=True)
-    filtered = 0
-    total = 0
-    for path in get_subfolder_names('data/processed'):
-        with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
-            total += len(json.load(file))
-        with open(os.path.join('data/processed', path), 'r', encoding='utf-8') as file:
-            filtered_jobs = [
-                job
-                for job in json.load(file)
-                if job['suitability'] >= 50
-            ]
-            output = os.path.join(
-                'data/filter',
-                path[:-len('_with_relevancy.json')] + '.json'
-            )
-            with open(output, 'w', encoding='utf-8') as file:
-                json.dump(filtered_jobs, file, ensure_ascii=False, indent=2)
-            filtered += len(filtered_jobs)
-
-    print(f"Filtered {filtered} jobs out of {total}")
+    # with open('data/filter/ds_jobs.json', 'w', encoding='utf-8') as file:
+    #     json.dump(relevant_jobs, file, ensure_ascii=False)
