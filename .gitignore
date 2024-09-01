@@ -4,3 +4,4 @@ Notebook.ipynb
 *.pyc
 data/
 .ipynb_checkpoints
+filter_old.py
