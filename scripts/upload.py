@@ -19,11 +19,12 @@ if __name__ == "__main__":
     URL = "https://jobboard.up.railway.app"
 
     for path in get_subfolder_names('data/processed/'):
-        tag = 'data' if 'data' in path else 'fsw'
+        tag = 'data' if 'ds' in path else 'fsw'
         with open(os.path.join('data/processed/', path), 'r', encoding='utf-8') as file:
             data = json.load(file)
             for item in data:
                 item['tag'] = tag
+                item['suitability'] = 60 if item['relevancy'] != 'irrelevant' else 20
             headers = {
                 'password': os.environ['API_PWD'],
                 'Content-Type': 'application/json'

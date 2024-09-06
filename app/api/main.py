@@ -1,9 +1,13 @@
 from fastapi import FastAPI, Depends, status, HTTPException, Request
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import os
+import subprocess
+from datetime import datetime, timedelta
 
 # Schemas
 from pydantic import BaseModel
@@ -55,10 +59,41 @@ class JobOut(JobBase):
     uploaded_at: Optional[datetime] = None
 
 
+def run_step(step: str, command: str):
+    print(f"Starting {step}...")
+    status = subprocess.run(command, shell=True).returncode
+
+    if status == 0:
+        print(f"{step} successful!")
+        return True
+    else:
+        print(f"{step} failed.")
+        return False
+
+
+def run_script():
+    os.chdir("scripts")
+    if run_step("Scraping", "python scrape.py"):
+        if run_step("Filtering", "python filter.py"):
+            run_step("Uploading", "python upload.py")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(func=run_script, trigger='date',
+                      run_date=datetime.now() + timedelta(seconds=3))
+    scheduler.add_job(
+        run_script, 'cron', day_of_week='fri', hour=22)
+    scheduler.start()
+    yield
+
+
 app = FastAPI(
     title='Job Board Automation',
     summary="Storage for job crawlers",
-    version='0.0.2'
+    version='0.0.2',
+    lifespan=lifespan
 )
 
 app.add_middleware(
