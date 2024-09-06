@@ -81,10 +81,10 @@ def run_script():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(func=run_script, trigger='date',
-                      run_date=datetime.now() + timedelta(seconds=3))
+    # scheduler.add_job(func=run_script, trigger='date',
+    #                   run_date=datetime.now() + timedelta(seconds=3))
     scheduler.add_job(
-        run_script, 'cron', day_of_week='fri', hour=22)
+        run_script, 'cron', day_of_week='mon', hour=8)
     scheduler.start()
     yield
 
