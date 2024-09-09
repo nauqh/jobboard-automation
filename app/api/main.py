@@ -149,8 +149,7 @@ def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: 
 
     if filtered:
         query = query.filter(
-            func.date_trunc('week', models.Job.uploaded_at) == func.date_trunc(
-                'week', func.current_date()),
+            func.date(models.Job.uploaded_at) == func.current_date(),
             models.Job.suitability >= 50
         )
     if company:
