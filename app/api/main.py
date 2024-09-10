@@ -7,12 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import os
 import subprocess
-from datetime import datetime, timedelta
-
-# Schemas
-from pydantic import BaseModel
-from datetime import datetime
-from typing import Optional
+from .schemas import JobIn, JobBase
 
 # Database
 from . import models
@@ -26,37 +21,6 @@ Max storage: 5GB
 """
 
 models.Base.metadata.create_all(bind=engine)
-
-
-class JobBase(BaseModel):
-    title: str
-    company: str
-    url: str
-    tag: str
-    suitability: int
-    uploaded_at: Optional[datetime] = None
-
-
-class JobIn(JobBase):
-    title: str
-    company: str
-    logo: str
-    url: str
-    location: str
-    descriptions: list | str
-    requirements: list | str
-    suitability: int
-    uploaded_at: Optional[datetime] = None
-
-
-class JobOut(JobBase):
-    title: str
-    company: str
-    logo: str
-    url: str
-    location: str
-    suitability: int
-    uploaded_at: Optional[datetime] = None
 
 
 def run_step(step: str, command: str):
@@ -131,14 +95,14 @@ async def add_jobs(data: List[JobIn], db: Session = Depends(get_db), password: s
     return f"Added {len(jobs)} jobs"
 
 
-@app.get("/jobs", response_model=List[JobOut])
+@app.get("/jobs", response_model=List[JobBase])
 def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: Session = Depends(get_db)):
     """
     Get jobs from database.
 
     Args:
         \n- company (str, optional): Filter jobs by a specific company. Defaults to None.
-        \n- filtered (bool, optional): Apply weekly suitability filtering. When `True`, only jobs uploaded in the current week and with a suitability of 50 or higher are returned. Defaults to False.
+        \n- filtered (bool, optional): Apply weekly suitability filtering. When `True`, only jobs uploaded in the current week and with a relevancy other than `irrelevant` are returned. Defaults to False.
         \n- tag (str, optional): Filter jobs by a specific tag. `fsw` or `data`. Defaults to None.
 
     Returns:
@@ -150,7 +114,7 @@ def get_jobs(company: str = None, filtered: bool = False, tag: str = None,  db: 
     if filtered:
         query = query.filter(
             func.date(models.Job.uploaded_at) == func.current_date(),
-            models.Job.suitability >= 50
+            models.Job.relevancy != "irrelevant"
         )
     if company:
         query = query.filter(models.Job.company == company)

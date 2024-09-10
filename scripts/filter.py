@@ -73,6 +73,7 @@ def process_jobs(jobs_file, output_file, candidate):
         resp = evaluator.evaluate_job(job, candidate)
         job['relevancy'] = resp.relevancy.value
         job['reason'] = resp.reason
+        job['tag'] = 'data' if 'ds' in jobs_file else 'fsw'
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, 'w', encoding='utf-8') as file:

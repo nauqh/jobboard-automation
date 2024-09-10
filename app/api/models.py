@@ -17,7 +17,8 @@ class Job(Base):
     requirements = Column(JSON)
 
     tag = Column(String)
-    suitability = Column(Integer)
+    relevancy = Column(String, comment="Relevancy score")
+    reason = Column(String, comment="Evaluation of job relevancy")
     uploaded_at = Column(DateTime(timezone=True),
                          server_default=func.now(), nullable=False)
 
