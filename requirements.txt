@@ -4,5 +4,5 @@ fastapi[all]
 psycopg2-binary
 instructor
 apscheduler
-beautifulsoup4
+beautifulsoup4==4.12.3
 requests
