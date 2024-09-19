@@ -1,14 +1,14 @@
 {
     "builds": [
         {
-            "src": "main_vercel.py",
+            "src": "app/api/main_vercel.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "main_vercel.py"
+            "dest": "/app/api/main_vercel.py"
         }
     ],
     "crons": [
