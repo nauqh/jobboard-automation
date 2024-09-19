@@ -42,7 +42,7 @@ def get_password(request: Request):
 
 @app.post("/jobs", status_code=status.HTTP_201_CREATED)
 async def add_jobs(data: List[JobIn], db: Session = Depends(get_db), password: str = Depends(get_password)):
-    if password != os.environ["PATH_PWD"]:
+    if password != os.environ["API_PWD"]:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect password")
 
