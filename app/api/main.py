@@ -1,63 +1,22 @@
 from fastapi import FastAPI, Depends, status, HTTPException, Request
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import os
-import subprocess
 from .schemas import JobIn, JobBase
+from .cron import cron_job
 
 # Database
 from . import models
 from .database import engine, get_db
 
-"""
-DATABASE STATUS
-
-Current storage: 198MB
-Max storage: 5GB
-"""
-
 models.Base.metadata.create_all(bind=engine)
-
-
-def run_step(step: str, command: str):
-    print(f"Starting {step}...")
-    status = subprocess.run(command, shell=True).returncode
-
-    if status == 0:
-        print(f"{step} successful!")
-        return True
-    else:
-        print(f"{step} failed.")
-        return False
-
-
-def run_script():
-    os.chdir("scripts")
-    if run_step("Scraping", "python scrape.py"):
-        if run_step("Filtering", "python filter.py"):
-            run_step("Uploading", "python upload.py")
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    scheduler = AsyncIOScheduler()
-    # scheduler.add_job(func=run_script, trigger='date',
-    #                   run_date=datetime.now() + timedelta(seconds=3))
-    scheduler.add_job(
-        run_script, 'cron', day_of_week='mon', hour=8)
-    scheduler.start()
-    yield
-
 
 app = FastAPI(
     title='Job Board Automation',
     summary="Storage for job crawlers",
-    version='0.0.2',
-    lifespan=lifespan
+    version='0.0.2'
 )
 
 app.add_middleware(
@@ -72,6 +31,11 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "Root endpoint"}
+
+
+@app.get("/api/cron")
+async def run_cron_job():
+    return cron_job()
 
 
 def get_password(request: Request):
