@@ -5,7 +5,6 @@ from sqlalchemy import func
 from typing import List
 import os
 from .schemas import JobIn, JobBase
-from .cron import cron_job
 
 # Database
 from . import models
@@ -31,11 +30,6 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "Root endpoint"}
-
-
-@app.get("/api/cron")
-async def run_cron_job():
-    return cron_job()
 
 
 def get_password(request: Request):

@@ -1,4 +1,16 @@
 {
+    "builds": [
+        {
+            "src": "main_vercel.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "main_vercel.py"
+        }
+    ],
     "crons": [
         {
             "path": "/api/cron",
