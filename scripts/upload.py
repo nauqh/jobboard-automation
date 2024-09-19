@@ -30,4 +30,3 @@ if __name__ == "__main__":
                 'Content-Type': 'application/json'
             }
             response = requests.post(URL + "/jobs", json=data, headers=headers)
-            print(response.text)
