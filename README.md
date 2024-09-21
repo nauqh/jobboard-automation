@@ -29,7 +29,8 @@ The system is composed of three main components:
 - **Storage & Output Module**: Saves the results in a structured format and provides logs for future reference.
 
 **Architecture Diagram**:
-> Consider adding a system architecture diagram here to show the flow of data between modules.
+
+<img width="500" src="pipeline.png">
 
 ## 3. Features
 The system scrapes job data from multiple platforms, processing raw information to extract key features like job `title`, `company`, and important metrics such as job `descriptions` and `requirements`. It then uses a large language model to evaluate the relevance of each job by comparing its description and requirements with the `candidate’s profile`. The output is a `relevancy` score that falls into one of four levels: High, Medium, Low, or Irrelevant, along with a rationale explaining why the job is relevant or irrelevant to the candidate.
@@ -95,7 +96,7 @@ Run `scripts/upload.py` to upload the processed jobs to the database.
 - Candidate Profile: Adjust `profile.json` to accurately reflect the candidate's information.
 - Filtering Criteria: Modify the prompt within `JobMatchingAssistant` in `main.py` to refine how jobs are evaluated.
 - Adding New Platforms: Expand the `scrapers/` directory with scripts to crawl more platforms.
-- 
+
 ## 8. Future Enhancements
 - [ ] UI Development: Add a front-end interface to simplify inputting candidate details and viewing job results.
 - [x] Scheduler Integration: Implement a scheduling feature to automatically run the scraping process on a set interval (e.g., weekly).
