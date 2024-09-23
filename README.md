@@ -81,12 +81,9 @@ OPENAI_API_KEY=your_api_key_here
 ## 6. Usage
 All processes can be executed using the `script.sh`, details as follow
 
-### 1. Crawl Job Data:
-Run `scripts/scrape.py`. This will scrape the specified job boards and save raw data to `data/raw/`.
-### 2. Filtered and Scored Jobs:
-Run `scripts/filter.py` and review the output files in `data/processed/`. Each file will contain jobs tailored to the candidate's profile, with a "relevancy" score indicating their relevance and a "reason" explaining their rationale.
-### 3. Upload Jobs:
-Run `scripts/upload.py` to upload the processed jobs to the database.
+1. **Crawl Job Data:** Run `scripts/scrape.py`. This will scrape the specified job boards and save raw data to `data/raw/`.
+2. **Filtered and Scored Jobs:** Run `scripts/filter.py` and review the output files in `data/processed/`. Each file will contain jobs tailored to the candidate's profile, with a "relevancy" score indicating their relevance and a "reason" explaining their rationale.
+3. **Upload Jobs:** Run `scripts/upload.py` to upload the processed jobs to the database.
 
 To execute, run bash shell
 
@@ -100,7 +97,7 @@ Alternatively, you can run the python script at `main.py`
 python main.py
 ```
 
-> The server has integrated the script as a cron job and will be running on a weekly basis at 8AM Monday GMT+7. 
+> The server has integrated the script as a cron job and will be running on a weekly basis at 8 AM Monday GMT+7. 
 
 ## 7. Customization
 - Candidate Profile: Adjust `profile.json` to accurately reflect the candidate's information.
