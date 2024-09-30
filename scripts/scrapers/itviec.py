@@ -32,8 +32,12 @@ def scrape_jobs(url):
 
         page = requests.get(job_url, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
-        job_description = soup.find_all('div', class_='imy-5 paragraph')[0]
-        job_requirement = soup.find_all('div', class_='imy-5 paragraph')[1]
+
+        try:
+            job_description = soup.find_all('div', class_='imy-5 paragraph')[0]
+            job_requirement = soup.find_all('div', class_='imy-5 paragraph')[1]
+        except IndexError:
+            continue
 
         # Handle different types of list items (Some pages have ul and li, some pages have p)
         descriptions = [
