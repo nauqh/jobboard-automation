@@ -12,7 +12,7 @@ def scrape_jobs(url):
 
     job_data = []
     for job in jobs:
-        job_url = "https://itviec.com/" + job.find('a')['href']
+        job_url = job.find('h3', class_='imt-3')['data-url']
         title = job.find('h3').text.strip()
 
         if any(keyword in title.lower() for keyword in ['senior', 'manager', 'leader', 'sr.']):
@@ -29,14 +29,14 @@ def scrape_jobs(url):
 
         tags = ' '.join([f'`{a.text.strip()}`' for a in job.find(
             'div', class_='imt-3 imb-2').find_all('a')])
-
         page = requests.get(job_url, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
 
         try:
             job_description = soup.find_all('div', class_='imy-5 paragraph')[0]
             job_requirement = soup.find_all('div', class_='imy-5 paragraph')[1]
-        except IndexError:
+        except Exception as e:
+            print(job_url)
             continue
 
         # Handle different types of list items (Some pages have ul and li, some pages have p)
