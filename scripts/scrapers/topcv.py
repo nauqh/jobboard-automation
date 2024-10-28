@@ -53,6 +53,7 @@ def scrape_jobs_topcv(url):
             requirements = find_requirement(soup)
         except Exception as e:
             print(f"Exception for job {title}: {e}")
+            continue
 
         job_data.append({
             'title': title,
