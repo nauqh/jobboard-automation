@@ -1,21 +1,41 @@
 from bs4 import BeautifulSoup
-import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
 
 
 def scrape_jobs(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
-    page = requests.get(url, headers=headers)
-    soup = BeautifulSoup(page.content, "html.parser")
+    driver = webdriver.Chrome()
+    driver.get(url)
+
+    # filter_button = driver.find_element(By.XPATH,
+    #                                     """/html/body/main/div[1]/div[2]/div[2]/div[3]/div/div[1]/div/div/button""")
+    # filter_button.click()
+    # time.sleep(1)
+    # fresher_label = driver.find_element(By.XPATH,
+    #                                     """//*[@id="filter_job"]/div/div/div[2]/form/section[1]/div/label[1]""")
+    # fresher_label.click()
+    # junior_label = driver.find_element(By.XPATH,
+    #                                    """//*[@id="filter_job"]/div/div/div[2]/form/section[1]/div/label[2]""")
+    # junior_label.click()
+    # apply_button = driver.find_element(By.XPATH,
+    #                                    """//*[@id="filter_job"]/div/div/div[3]/button""")
+    # apply_button.click()
+    # time.sleep(5)
+
+    page_source = driver.page_source  # get the result page after applying the filter
+
+    soup = BeautifulSoup(page_source, "html.parser")
     jobs = soup.find_all('div', class_='ipy-2')
+    driver.close()
 
     job_data = []
-    for job in jobs:
+
+    for job in jobs[:5]:
         job_url = job.find('h3', class_='imt-3')['data-url']
         title = job.find('h3').text.strip()
 
-        if any(keyword in title.lower() for keyword in ['senior', 'manager', 'leader', 'sr.']):
+        if any(keyword in title.lower() for keyword in ['senior', 'manager', 'leader', 'sr.', 'lead']):
             continue
 
         company = job.find(
@@ -29,13 +49,16 @@ def scrape_jobs(url):
 
         tags = ' '.join([f'`{a.text.strip()}`' for a in job.find(
             'div', class_='imt-3 imb-2').find_all('a')])
-        page = requests.get(job_url, headers=headers)
-        soup = BeautifulSoup(page.content, "html.parser")
+
+        driver = webdriver.Chrome()
+        driver.get(job_url)
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+        driver.close()
 
         try:
             job_description = soup.find_all('div', class_='imy-5 paragraph')[0]
             job_requirement = soup.find_all('div', class_='imy-5 paragraph')[1]
-        except Exception as e:
+        except Exception:
             print(job_url)
             continue
 
