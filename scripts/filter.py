@@ -36,7 +36,9 @@ class JobEvaluator:
             - Low: the job is only marginally relevant to the candidate. The position might require skills or experience that the candidate does not possess or is only vaguely related to their background. The candidate may need significant upskilling or retraining to be a good fit.
             - Irrelevant: the job is not suitable for the candidate. The skills, experience, or qualifications required for the job do not align with the candidate's profile, making them an unlikely match for the position.
 
-        The criteria for determining relevance include the candidate's years of experience and toolset proficiency. If the job requires more than 2 years of experience, mark it as irrelevant.
+        Additional relevance criteria:
+        - Focus on toolset proficiency and skills specified in both the job and the candidate's profile.
+        - Consider years of experience; if the job demands more than two years of experience and the candidate falls short, mark as 'irrelevant.'
         """
 
     def evaluate_job(self, job: dict, candidate: str) -> Reply:
@@ -54,11 +56,12 @@ class JobEvaluator:
                 },
                 {
                     "role": "user",
-                    "content": f"""Hi there, please validate this job for me.
-                    "title": {title},
-                    "description": {description},
-                    "requirement": {requirement},
-                    "candidate": "{candidate}""",
+                    "content": f"""
+                    Evaluate this job for relevance to the candidate:
+                    - Title: {title},
+                    - Description: {description},
+                    - Requirement: {requirement},
+                    - Candidate: "{candidate}""",
                 },
             ],
         )
