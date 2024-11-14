@@ -47,7 +47,7 @@ def scrape_jobs(url):
                           for div in job.find_all('div',
                                                   class_='d-flex align-items-center text-dark-grey imt-1')]
 
-        tags = ' '.join([f'`{a.text.strip()}`' for a in job.find(
+        tags = ' '.join([f'{a.text.strip()}' for a in job.find(
             'div', class_='imt-3 imb-2').find_all('a')])
 
         driver = webdriver.Chrome()
@@ -90,6 +90,7 @@ def scrape_jobs(url):
             'url': job_url,
             'location': location,
             'mode': mode,
+            'tags': tags,
             'descriptions': descriptions,
             'requirements': requirements
         })
