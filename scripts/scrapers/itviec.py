@@ -23,9 +23,7 @@ def scrape_jobs(url):
     # apply_button.click()
     # time.sleep(5)
 
-    page_source = driver.page_source  # get the result page after applying the filter
-
-    soup = BeautifulSoup(page_source, "html.parser")
+    soup = BeautifulSoup(driver.page_source, "html.parser")
     jobs = soup.find_all('div', class_='ipy-2')
     driver.close()
 
