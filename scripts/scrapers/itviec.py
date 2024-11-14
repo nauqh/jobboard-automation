@@ -31,7 +31,7 @@ def scrape_jobs(url):
 
     job_data = []
 
-    for job in jobs[:5]:
+    for job in jobs:
         job_url = job.find('h3', class_='imt-3')['data-url']
         title = job.find('h3').text.strip()
 
