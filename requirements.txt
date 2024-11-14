@@ -6,3 +6,4 @@ instructor
 apscheduler
 beautifulsoup4
 requests
+selenium

@@ -1,36 +1,40 @@
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import requests
 
 
-def find_description(soup):
-    try:
-        description = soup.find('div', class_='job-description__item')
-        if not description:
-            description = soup.find_all('div', class_='box-info')[1]
-    except Exception as e:
-        print(e)
-    return description.text
+# def find_description(soup):
+#     try:
+#         description = soup.find('div', class_='job-description__item')
+#         if not description:
+#             description = soup.find_all('div', class_='box-info')[1]
+#     except Exception as e:
+#         print(e)
+#     return description.text
 
 
-def find_requirement(soup):
-    try:
-        requirement = soup.find_all('div', class_='job-description__item')
-        if requirement:
-            requirement = requirement[1]
-        else:
-            requirement = soup.find_all('div', class_='box-info')[2]
-    except Exception as e:
-        print(e)
-    return requirement.text
+# def find_requirement(soup):
+#     try:
+#         requirement = soup.find_all('div', class_='job-description__item')
+#         if requirement:
+#             requirement = requirement[1]
+#         else:
+#             requirement = soup.find_all('div', class_='box-info')[2]
+#     except Exception as e:
+#         print(e)
+#     return requirement.text
 
 
 def scrape_jobs_topcv(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+    # headers = {
+    #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
-    page = requests.get(url, headers=headers)
-    soup = BeautifulSoup(page.content, "html.parser")
+    driver = webdriver.Chrome()
+    driver.get(url)
+    page_source = driver.page_source
+    driver.quit()
 
+    soup = BeautifulSoup(page_source, "html.parser")
     jobs = soup.find_all('div', class_='job-item-search-result')
 
     job_data = []
@@ -45,15 +49,15 @@ def scrape_jobs_topcv(url):
         location = job.find('label', class_='address').text.strip()
         salary = job.find('label', class_='title-salary').text.strip()
 
-        page = requests.get(job_url, headers=headers)
-        soup = BeautifulSoup(page.content, "html.parser")
+        # page = requests.get(job_url, headers=headers)
+        # soup = BeautifulSoup(page.content, "html.parser")
 
-        try:
-            descriptions = find_description(soup)
-            requirements = find_requirement(soup)
-        except Exception as e:
-            print(f"Exception for job {title}: {e}")
-            continue
+        # try:
+        #     descriptions = find_description(soup)
+        #     requirements = find_requirement(soup)
+        # except Exception as e:
+        #     print(f"Exception for job {title}: {e}")
+        #     continue
 
         job_data.append({
             'title': title,
@@ -62,8 +66,8 @@ def scrape_jobs_topcv(url):
             'url': job_url,
             'location': location,
             'salary': salary,
-            'descriptions': descriptions,
-            'requirements': requirements
+            # 'descriptions': descriptions,
+            # 'requirements': requirements
         })
 
     return job_data
