@@ -60,9 +60,9 @@ if __name__ == "__main__":
 
     # TopCV Scraping
     scraper.scrape_and_save(
-        'topcv', "https://www.topcv.vn/tim-viec-lam-data-analyst?exp=2", "DS/topcv_jobs_data.json")
+        'topcv', "https://www.topcv.vn/tim-viec-lam-data-analyst?exp=3", "DS/topcv_jobs_data.json")
     scraper.scrape_and_save(
-        'topcv', "https://www.topcv.vn/tim-viec-lam-frontend-developer?exp=2", "FSW/topcv_jobs_fsw2.json")
+        'topcv', "https://www.topcv.vn/tim-viec-lam-frontend-developer?exp=3", "FSW/topcv_jobs_fsw.json")
 
     # LinkedIn Scraping
     scraper.scrape_and_save(
